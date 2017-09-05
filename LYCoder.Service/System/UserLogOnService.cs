@@ -9,7 +9,7 @@ using LYCoder.DataAccess;
 
 namespace LYCoder.Service
 {
-    public partial class UserLogOnService : BaseService<Sys_Userlogon>
+    public partial class UserLogOnService : BaseService<Sys_Userlogon, Sys_UserlogonFields>
     {
         public static new int Insert(Sys_Userlogon model)
         {
@@ -30,8 +30,10 @@ namespace LYCoder.Service
 
         public static int UpdateInfo(Sys_Userlogon model)
         {
-            var updateColumns = new List<string>() {
-                 "SULAllowMultiUserOnline", "SULQuestion", "SULAnswerQuestion",  "SULCheckIPAddress", "SULLanguage", "SULTheme"};
+            var updateColumns = new List<Sys_UserlogonFields>() {
+             Sys_UserlogonFields.SULAllowMultiUserOnline,Sys_UserlogonFields.SULQuestion
+             ,Sys_UserlogonFields.SULAnswerQuestion,Sys_UserlogonFields.SULCheckIPAddress
+             ,Sys_UserlogonFields.SULLanguage,Sys_UserlogonFields.SULTheme};
             return UserLogOnAccess.Update(model, updateColumns);
         }
 
@@ -41,8 +43,9 @@ namespace LYCoder.Service
             model.SULPrevVisitTime = model.SULLastVisitTime;
             model.SULLastVisitTime = DateTime.Now;
             model.SULLoginCount += 1;
-            var updateColumns = new List<string>() {
-                "SULIsOnLine", "SULPrevVisitTime", "SULLastVisitTime", "SULLoginCount" };
+            var updateColumns = new List<Sys_UserlogonFields>() {
+           Sys_UserlogonFields.SULIsOnLine,Sys_UserlogonFields.SULPrevVisitTime
+           ,Sys_UserlogonFields.SULLastVisitTime,Sys_UserlogonFields.SULLoginCount };
             return UserLogOnAccess.Update(model, updateColumns);
         }
 
@@ -54,7 +57,7 @@ namespace LYCoder.Service
         public static bool ModifyPwd(Sys_Userlogon model)
         {
             model.SULChangePwdTime = DateTime.Now;
-            var updateColumns = new List<string>() { "SULPassword", "SULChangePwdTime" };
+            var updateColumns = new List<Sys_UserlogonFields>() { Sys_UserlogonFields.SULPassword,Sys_UserlogonFields.SULChangePwdTime };
             return UserLogOnAccess.Update(model, updateColumns) > 0 ? true : false;
         }
     }

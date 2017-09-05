@@ -8,3 +8,13 @@ F:\Projects\LYCoder\LYCoder.Infrastructure\bin\Debug\NLog.xml
 F:\Projects\LYCoder\LYCoder.Infrastructure\obj\Debug\LYCoder.Common.csprojResolveAssemblyReference.cache
 F:\Projects\LYCoder\LYCoder.Infrastructure\obj\Debug\LYCoder.Common.dll
 F:\Projects\LYCoder\LYCoder.Infrastructure\obj\Debug\LYCoder.Common.pdb
+F:\Projects\coder\lycoder\LYCoder.Infrastructure\bin\Debug\LYCoder.Common.dll
+F:\Projects\coder\lycoder\LYCoder.Infrastructure\bin\Debug\LYCoder.Common.pdb
+F:\Projects\coder\lycoder\LYCoder.Infrastructure\bin\Debug\Microsoft.Web.Infrastructure.dll
+F:\Projects\coder\lycoder\LYCoder.Infrastructure\bin\Debug\Newtonsoft.Json.dll
+F:\Projects\coder\lycoder\LYCoder.Infrastructure\bin\Debug\NLog.dll
+F:\Projects\coder\lycoder\LYCoder.Infrastructure\bin\Debug\Newtonsoft.Json.xml
+F:\Projects\coder\lycoder\LYCoder.Infrastructure\bin\Debug\NLog.xml
+F:\Projects\coder\lycoder\LYCoder.Infrastructure\obj\Debug\LYCoder.Common.dll
+F:\Projects\coder\lycoder\LYCoder.Infrastructure\obj\Debug\LYCoder.Common.pdb
+F:\Projects\coder\lycoder\LYCoder.Infrastructure\obj\Debug\LYCoder.Common.csprojResolveAssemblyReference.cache

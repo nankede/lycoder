@@ -9,7 +9,7 @@ using LYCoder.DataAccess;
 
 namespace LYCoder.Service
 {
-    public partial class PermissionService : BaseService<Sys_Permission>
+    public partial class PermissionService : BaseService<Sys_Permission, Sys_PermissionFields>
     {
         public static new int Insert(Sys_Permission model)
         {
@@ -27,6 +27,26 @@ namespace LYCoder.Service
             return PermissionAccess.Insert(model);
         }
 
+        /// <summary>
+        /// 逻辑删除
+        /// </summary>
+        /// <param name="Id"></param>
+        /// <returns></returns>
+        public static int Delete(int Id)
+        {
+            var model = new Sys_Permission()
+            {
+                Id = Id,
+                SPDeleteMark = 1,
+                SPModifyUser = OperatorProvider.Instance.Current.UserId,
+                SPModifyTime = DateTime.Now,
+            };
+            var updateColumns = new List<Sys_PermissionFields>() {
+            Sys_PermissionFields.SPDeleteMark,Sys_PermissionFields.SPModifyUser,Sys_PermissionFields.SPModifyTime
+            };
+            return PermissionAccess.Update(model, updateColumns);
+        }
+
         public static new int Update(Sys_Permission model)
         {
             if (model.SPParentId > 0)
@@ -36,10 +56,12 @@ namespace LYCoder.Service
             }
             model.SPModifyUser = OperatorProvider.Instance.Current.UserId;
             model.SPModifyTime = DateTime.Now;
-            var updateColumns = new List<string>() {
-                "SPParentId", "SPLayer", "SPEnCode", "SPName", "SPJsEvent", "SPIcon",
-                "SPUrl", "SPRemark", "SPType", "SPSortCode", "SPIsPublic", "SPIsEnabled",
-                "SPIsEdit", "SPModifyUser", "SPModifyTime" };
+            var updateColumns = new List<Sys_PermissionFields>() {
+                Sys_PermissionFields.SPParentId,Sys_PermissionFields.SPLayer,Sys_PermissionFields.SPEnCode
+                ,Sys_PermissionFields.SPName,Sys_PermissionFields.SPJsEvent,Sys_PermissionFields.SPIcon
+                ,Sys_PermissionFields.SPUrl,Sys_PermissionFields.SPRemark,Sys_PermissionFields.SPType
+                ,Sys_PermissionFields.SPSortCode,Sys_PermissionFields.SPIsPublic,Sys_PermissionFields.SPIsEnabled
+                ,Sys_PermissionFields.SPIsEdit,Sys_PermissionFields.SPModifyUser,Sys_PermissionFields.SPModifyTime };
             return PermissionAccess.Update(model, updateColumns);
         }
 
@@ -63,7 +85,7 @@ namespace LYCoder.Service
             return PermissionAccess.GetList(pageIndex, pageSize, keyWord);
         }
 
-        public static bool ActionValidate(int userId, string action,out string title)
+        public static bool ActionValidate(int userId, string action, out string title)
         {
             title = string.Empty;
             var authorizeModules = new List<Sys_Permission>();

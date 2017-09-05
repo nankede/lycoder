@@ -9,7 +9,7 @@ using LYCoder.DataAccess;
 
 namespace LYCoder.Service
 {
-    public partial class UserRoleRelationService : BaseService<Sys_Userrolerelation>
+    public partial class UserRoleRelationService : BaseService<Sys_Userrolerelation, Sys_UserrolerelationFields>
     {
         public static List<Sys_Userrolerelation> GetList(int  userId)
         {
@@ -45,13 +45,28 @@ namespace LYCoder.Service
             //e.旧集合中剩下的用户角色关系从数据库中删除。
             listOldRRs.ForEach((rrObj) =>
             {
-                UserRoleRelationAccess.Delete(rrObj);
+                Delete(rrObj.Id);
             });
         }
 
-        public static int Delete(int userId)
+        /// <summary>
+        /// 逻辑删除
+        /// </summary>
+        /// <param name="Id"></param>
+        /// <returns></returns>
+        public static int Delete(int Id)
         {
-            return UserRoleRelationAccess.Delete(userId);
+            var model = new Sys_Userrolerelation()
+            {
+                Id = Id,
+                SURRDeleteMark = 1,
+                SURRModifyUser = OperatorProvider.Instance.Current.UserId,
+                SURRModifyTime = DateTime.Now,
+            };
+            var updateColumns = new List<Sys_UserrolerelationFields>() {
+            Sys_UserrolerelationFields.SURRDeleteMark,Sys_UserrolerelationFields.SURRModifyUser,Sys_UserrolerelationFields.SURRModifyTime
+            };
+            return UserRoleRelationAccess.Update(model, updateColumns);
         }
     }
 }

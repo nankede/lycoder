@@ -68,9 +68,9 @@ namespace LYCoder.Web.Areas.System.Controllers
         }
 
         [HttpPost, AuthorizeChecked]
-        public ActionResult Delete(string primaryKey)
+        public ActionResult Delete(int primaryKey)
         {
-            int row = RoleService.Delete(primaryKey.ToStrArray());
+            int row = RoleService.Delete(primaryKey);
             return row > 0 ? Success() : Error();
         }
 

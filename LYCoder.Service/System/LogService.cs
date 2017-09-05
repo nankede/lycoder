@@ -9,7 +9,7 @@ using LYCoder.DataAccess;
 
 namespace LYCoder.Service
 {
-    public partial class LogService : BaseService<Sys_Log>
+    public partial class LogService : BaseService<Sys_Log, Sys_LogFields>
     {
         public static Page<Sys_Log> GetList(long pageIndex, long pageSize, DateTime limitDate, string keyWord,string level)
         {

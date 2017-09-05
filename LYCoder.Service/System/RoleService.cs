@@ -9,7 +9,7 @@ using LYCoder.DataAccess;
 
 namespace LYCoder.Service
 {
-    public partial class RoleService : BaseService<Sys_Role>
+    public partial class RoleService : BaseService<Sys_Role, Sys_RoleFields>
     {
         public static Page<Sys_Role> GetList(long pageIndex, long pageSize, string keyWord)
         {
@@ -27,14 +27,36 @@ namespace LYCoder.Service
             return RoleAccess.Insert(model);
         }
 
-        public static new  int Update(Sys_Role model)
+        public static new int Update(Sys_Role model)
         {
             model.SRModifyUser = OperatorProvider.Instance.Current.UserId;
             model.SRCreateTime = DateTime.Now; ;
             model.SRModifyTime = DateTime.Now;
-            var updateColumns = new List<string>() {
-                "SROrganizeId", "SREnCode", "SRType", "SRName", "SRAllowEdit",
-                "SRIsEnabled", "SRRemark", "SRSortCode", "SRModifyUser", "SRModifyTime" };
+            var updateColumns = new List<Sys_RoleFields>() {
+                Sys_RoleFields.SROrganizeId,Sys_RoleFields.SREnCode,Sys_RoleFields.SRType
+                ,Sys_RoleFields.SRName,Sys_RoleFields.SRAllowEdit,Sys_RoleFields.SRIsEnabled
+                ,Sys_RoleFields.SRRemark,Sys_RoleFields.SRSortCode,Sys_RoleFields.SRModifyUser
+                ,Sys_RoleFields.SRModifyTime };
+            return RoleAccess.Update(model, updateColumns);
+        }
+
+        /// <summary>
+        /// 逻辑删除
+        /// </summary>
+        /// <param name="Id"></param>
+        /// <returns></returns>
+        public static int Delete(int Id)
+        {
+            var model = new Sys_Role()
+            {
+                Id = Id,
+                SRDeleteMark = 1,
+                SRModifyUser = OperatorProvider.Instance.Current.UserId,
+                SRModifyTime = DateTime.Now,
+            };
+            var updateColumns = new List<Sys_RoleFields>() {
+            Sys_RoleFields.SRDeleteMark,Sys_RoleFields.SRModifyUser,Sys_RoleFields.SRModifyTime
+            };
             return RoleAccess.Update(model, updateColumns);
         }
 

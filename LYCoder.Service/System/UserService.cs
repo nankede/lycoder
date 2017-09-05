@@ -9,7 +9,7 @@ using LYCoder.DataAccess;
 
 namespace LYCoder.Service
 {
-    public partial class UserService : BaseService<Sys_User>
+    public partial class UserService : BaseService<Sys_User, Sys_UserFields>
     {
         /// <summary>
         /// 新增用户，含角色、登录
@@ -38,10 +38,11 @@ namespace LYCoder.Service
         {
             model.SUModifyUser = OperatorProvider.Instance.Current.UserId;
             model.SUModifyTime = DateTime.Now;
-            var updateColumns = new List<string>() {
-                "SURealName", "SUNickName", "SUGender", "SUBirthday", "SUMobilePhone",
-                "SUEmail", "SUSignature", "SUAddress", "SUDepartmentId" ,
-                "SUIsEnabled", "SUModifyUser" , "SUModifyTime"};
+            var updateColumns = new List<Sys_UserFields>() {
+                Sys_UserFields.SURealName,Sys_UserFields.SUNickName,Sys_UserFields.SUGender
+                ,Sys_UserFields.SUBirthday,Sys_UserFields.SUMobilePhone,Sys_UserFields.SUEmail
+                ,Sys_UserFields.SUSignature,Sys_UserFields.SUAddress,Sys_UserFields.SUDepartmentId
+                ,Sys_UserFields.SUIsEnabled,Sys_UserFields.SUModifyUser,Sys_UserFields.SUModifyTime};
             return UserAccess.Update(model, updateColumns);
         }
 

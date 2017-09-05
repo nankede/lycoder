@@ -62,7 +62,7 @@ namespace LYCoder.Web.Areas.System.Controllers
         }
 
         [HttpPost, AuthorizeChecked]
-        public ActionResult Delete(string primaryKey)
+        public ActionResult Delete(int primaryKey)
         {
             long count = OrganizeService.GetChildCount(primaryKey);
             if (count == 0)

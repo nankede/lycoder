@@ -62,7 +62,7 @@ namespace LYCoder.Web.Areas.System.Controllers
         }
 
         [HttpPost]
-        public ActionResult Delete(string primaryKey)
+        public ActionResult Delete(int primaryKey)
         {
             long count = ItemService.GetChildCount(primaryKey);
             if (count == 0)

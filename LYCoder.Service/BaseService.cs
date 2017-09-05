@@ -10,31 +10,31 @@ namespace LYCoder.Service
     /// <summary>
     /// 业务逻辑层父类。
     /// </summary>
-    public partial class BaseService<TEntity> 
+    public partial class BaseService<TEntity, TFileFields>
     {
         public static bool Exists(object primaryKey)
         {
-            return BaseAccess<TEntity>.Exists(primaryKey);
+            return BaseAccess<TEntity, TFileFields>.Exists(primaryKey);
         }
 
         public static TEntity Get(object primaryKey)
         {
-            return BaseAccess<TEntity>.Get(primaryKey);
+            return BaseAccess<TEntity, TFileFields>.Get(primaryKey);
         }
 
         public static int Insert(TEntity model)
         {
-            return BaseAccess<TEntity>.Insert(model);
+            return BaseAccess<TEntity, TFileFields>.Insert(model);
         }
 
         public static int Update(TEntity model)
         {
-            return BaseAccess<TEntity>.Update(model);
+            return BaseAccess<TEntity, TFileFields>.Update(model);
         }
 
         public static int Delete(object primaryKey)
         {
-            return BaseAccess<TEntity>.Delete(primaryKey);
+            return BaseAccess<TEntity, TFileFields>.Delete(primaryKey);
         }
 
     }

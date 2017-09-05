@@ -10,7 +10,7 @@ using LYCoder.DataAccess;
 
 namespace LYCoder.Service
 {
-    public partial class RoleAuthorizeService : BaseService<Sys_Roleauthorize>
+    public partial class RoleAuthorizeService : BaseService<Sys_Roleauthorize, Sys_RoleauthorizeFields>
     {
         public static List<Sys_Roleauthorize> GetList(object roleId)
         {

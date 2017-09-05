@@ -43,7 +43,7 @@ namespace LYCoder.Web.Areas.System.Controllers
         [HttpPost, AuthorizeChecked, ValidateAntiForgeryToken]
         public ActionResult Form(Sys_Permission model)
         {
-            if (model.Id == 0 )
+            if (model.Id == 0)
             {
                 var primaryKey = PermissionService.Insert(model);
                 return primaryKey > 0 ? Success() : Error();
@@ -62,12 +62,12 @@ namespace LYCoder.Web.Areas.System.Controllers
         }
 
         [HttpPost, AuthorizeChecked]
-        public ActionResult Delete(string primaryKey)
+        public ActionResult Delete(int primaryKey)
         {
             long count = PermissionService.GetChildCount(primaryKey);
             if (count == 0)
             {
-                int row = PermissionService.Delete(primaryKey.ToStrArray());
+                int row = PermissionService.Delete(primaryKey);
                 return row > 0 ? Success() : Error();
             }
             return Error(string.Format("操作失败，请先删除该项的{0}个子级权限。", count));
