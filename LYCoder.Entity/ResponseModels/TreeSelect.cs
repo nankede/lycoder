@@ -23,10 +23,17 @@ namespace LYCoder.Entity
         public static string ToTreeSelectJson(this List<TreeSelect> data)
         {
             StringBuilder sb = new StringBuilder();
-            int minPId = data.Min(a => a.parentId);
-            sb.Append("[");
-            sb.Append(ToTreeSelectJson(data, minPId, minPId, ""));
-            sb.Append("]");
+            if (data != null && data.Count > 0)
+            {
+                int minPId = data.Min(a => a.parentId);
+                sb.Append("[");
+                sb.Append(ToTreeSelectJson(data, minPId, minPId, ""));
+                sb.Append("]");
+            }
+            else
+            {
+                sb.Append("[]");
+            }
             return sb.ToString();
         }
         /// <summary>

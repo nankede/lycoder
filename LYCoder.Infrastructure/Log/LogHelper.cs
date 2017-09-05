@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using NLog;
 using NLog.Config;
 using System.ComponentModel;
+using System.Threading;
 
 namespace LYCoder.Common
 {
@@ -24,7 +25,6 @@ namespace LYCoder.Common
             string configPath = AppDomain.CurrentDomain.BaseDirectory + @"\Configs\NLog.config";
             LogManager.Configuration = new XmlLoggingConfiguration(configPath);
         }
-
         /// <summary>
         /// 记录日志。
         /// </summary>
@@ -34,6 +34,20 @@ namespace LYCoder.Common
         /// <param name="account">操作者</param>
         /// <param name="realName">真实姓名</param>
         public static void Write(Level level, string operation, string message, int account, string realName)
+        {
+            ThreadPool.QueueUserWorkItem(t =>
+            { WriteLog(level, operation, message, account, realName); });
+        }
+
+        /// <summary>
+        /// 记录日志。
+        /// </summary>
+        /// <param name="level">日志级别</param>
+        /// <param name="operation">动作</param>
+        /// <param name="message">消息</param>
+        /// <param name="account">操作者</param>
+        /// <param name="realName">真实姓名</param>
+        public static void WriteLog(Level level, string operation, string message, int account, string realName)
         {
             LogEventInfo logEvent = new LogEventInfo();
             logEvent.Message = message;
@@ -58,11 +72,12 @@ namespace LYCoder.Common
                     logEvent.Level = LogLevel.Fatal;
                     break;
             }
+            string ip = Net.Ip;
             logEvent.Properties["Account"] = account;
             logEvent.Properties["RealName"] = realName;
             logEvent.Properties["Operation"] = operation;
-            logEvent.Properties["IP"] = Net.Ip;
-            logEvent.Properties["IPAddress"] = Net.GetAddress(Net.Ip);
+            logEvent.Properties["IP"] = ip;
+            logEvent.Properties["IPAddress"] = Net.GetAddress(ip);
             logEvent.Properties["Browser"] = Net.Browser;
             logger.Log(logEvent);
         }
@@ -73,7 +88,8 @@ namespace LYCoder.Common
         /// <param name="message"></param>
         public static void Trace(string message)
         {
-            logger.Trace(message);
+            ThreadPool.QueueUserWorkItem(t =>
+            { logger.Trace(message); });
         }
 
         /// <summary>
@@ -82,7 +98,8 @@ namespace LYCoder.Common
         /// <param name="message"></param>
         public static void Debug(string message)
         {
-            logger.Debug(message);
+            ThreadPool.QueueUserWorkItem(t =>
+            { logger.Debug(message); });
         }
 
         /// <summary>
@@ -91,7 +108,8 @@ namespace LYCoder.Common
         /// <param name="message"></param>
         public static void Info(string message)
         {
-            logger.Info(message);
+            ThreadPool.QueueUserWorkItem(t =>
+            { logger.Info(message); });
         }
 
         /// <summary>
@@ -100,7 +118,8 @@ namespace LYCoder.Common
         /// <param name="message"></param>
         public static void Warn(string message)
         {
-            logger.Warn(message);
+            ThreadPool.QueueUserWorkItem(t =>
+            { logger.Warn(message); });
         }
 
         /// <summary>
@@ -110,7 +129,7 @@ namespace LYCoder.Common
         public static void Error(string message)
         {
             var current = OperatorProvider.Instance.Current;
-            Write(Level.Error,"程序异常",message,current.UserId,current.RealName);
+            Write(Level.Error, "程序异常", message, current == null ? 0 : current.UserId, current == null ? "未知用户" : current.RealName);
         }
 
         /// <summary>
@@ -119,7 +138,8 @@ namespace LYCoder.Common
         /// <param name="message"></param>
         public static void Fatal(string message)
         {
-            logger.Fatal(message);
+            ThreadPool.QueueUserWorkItem(t =>
+            { logger.Fatal(message); });
         }
     }
 

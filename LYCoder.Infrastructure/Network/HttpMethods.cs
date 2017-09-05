@@ -38,7 +38,7 @@ namespace LYCoder.Common
             request.Method = "POST";
             request.ContentType = "application/x-www-form-urlencoded";
             request.Accept = "*/*";
-            request.Timeout = 15000;
+            request.Timeout = 6000;
             request.AllowAutoRedirect = false;
 
 
@@ -183,7 +183,7 @@ namespace LYCoder.Common
             request.Method = "PUT";
             request.ContentType = "application/x-www-form-urlencoded";
             request.Accept = "*/*";
-            request.Timeout = 15000;
+            request.Timeout = 6000;
             request.AllowAutoRedirect = false;
 
             StreamWriter requestStream = null;
@@ -243,7 +243,7 @@ namespace LYCoder.Common
             request.Method = "Delete";
             request.ContentType = "application/x-www-form-urlencoded";
             request.Accept = "*/*";
-            request.Timeout = 15000;
+            request.Timeout = 6000;
             request.AllowAutoRedirect = false;
 
             StreamWriter requestStream = null;
@@ -296,7 +296,7 @@ namespace LYCoder.Common
             request.Method = "GET";
             //request.ContentType = "application/x-www-form-urlencoded";
             request.Accept = "*/*";
-            request.Timeout = 15000;
+            request.Timeout = 6000;
             request.AllowAutoRedirect = false;
             WebResponse response = null;
             string responseStr = null;
@@ -343,7 +343,7 @@ namespace LYCoder.Common
             request.Method = "GET";
             //request.ContentType = "application/x-www-form-urlencoded";
             request.Accept = "*/*";
-            request.Timeout = 15000;
+            request.Timeout = 6000;
             request.AllowAutoRedirect = false;
             WebResponse response = null;
             string responseStr = null;

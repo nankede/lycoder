@@ -75,10 +75,7 @@ namespace LYCoder.Common
             var url = "http://ip.taobao.com/service/getIpInfo.php?ip=" + ip;
             try
             {
-                using (var client = new WebClient())
-                {
-                    return client.DownloadString(url).ToObject<TaoBaoIpEnitiy>().GetAddress();
-                }
+                return HttpMethods.HttpGet(url).ToObject<TaoBaoIpEnitiy>().GetAddress();
             }
             catch
             {

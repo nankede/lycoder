@@ -59,7 +59,7 @@ namespace LYCoder.Web.Controllers
             var userId = OperatorProvider.Instance.Current.UserId;
             var action = HttpContext.Current.Request.ServerVariables["SCRIPT_NAME"].ToString();
             var title = string.Empty;
-            bool hasPermission = PermissionService.ActionValidate(userId, action,out title);
+            bool hasPermission = PermissionService.ActionValidate(userId, action, out title);
             if (!hasPermission)
             {
                 StringBuilder script = new StringBuilder();
@@ -103,23 +103,17 @@ namespace LYCoder.Web.Controllers
     {
         public override void OnException(ExceptionContext filterContext)
         {
-            filterContext.HttpContext.Response.StatusCode = 500;
+            //filterContext.HttpContext.Response.StatusCode = 500;
             filterContext.ExceptionHandled = true;
-            StringBuilder script = new StringBuilder();
-
-            LogHelper.Error(filterContext.Exception.Message + filterContext.Exception.StackTrace);
-
-            if (OperatorProvider.Instance.Current == null)
+            Operator onlineUser = OperatorProvider.Instance.Current;
+            LogHelper.Write(Level.Error, filterContext.Exception.Message, filterContext.Exception.StackTrace, onlineUser == null ? 0 : onlineUser.UserId, onlineUser == null ? "未知用户" : onlineUser.RealName);
+            if (onlineUser == null)
             {
-                script.Append("<script>top.alert('登陆超时，请重新认证。'); top.window.location.href='/Account/Login'</script>");
-                filterContext.Result = new ContentResult() { Content = script.ToString() };
+                filterContext.Result = new RedirectResult("/Account/Login");
             }
             else
             {
-                Operator onlineUser = OperatorProvider.Instance.Current;
-                LogHelper.Write(Level.Error, filterContext.Exception.Message, filterContext.Exception.StackTrace, onlineUser.UserId, onlineUser.RealName);
-                script.Append("<script>top.window.alert('系统出现异常，请联系开发人员确认。');</script>");
-                filterContext.Result = new ContentResult() { Content = script.ToString() };
+                filterContext.Result = new ContentResult() { Content = new AjaxResult(ResultType.Error, "操作失败，请稍后再试！", null).ToJson() };
             }
         }
     }

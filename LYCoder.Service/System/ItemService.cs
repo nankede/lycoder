@@ -39,6 +39,7 @@ namespace LYCoder.Service
             model.SICreateTime = DateTime.Now;
             model.SIModifyUser = model.SICreateUser;
             model.SIModifyTime = model.SICreateTime;
+            model.SIRemark = model.SIRemark ?? string.Empty;
             return ItemAccess.Insert(model);
         }
 

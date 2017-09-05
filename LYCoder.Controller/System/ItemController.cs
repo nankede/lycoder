@@ -82,7 +82,6 @@ namespace LYCoder.Web.Areas.System.Controllers
             return View();
         }
 
-        [HttpPost]
         public ActionResult GetListTree()
         {
             var listAllItems = ItemService.GetList();
@@ -101,7 +100,6 @@ namespace LYCoder.Web.Areas.System.Controllers
             return Content(result.ToJson());
         }
 
-        [HttpPost]
         public ActionResult GetListSelectTree()
         {
             var data = ItemService.GetList();
