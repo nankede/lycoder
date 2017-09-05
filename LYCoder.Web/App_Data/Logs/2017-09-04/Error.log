@@ -1,0 +1,198 @@
+ 发生时间：2017-09-04 23:49:34.7626
+ 日志级别：ERROR
+ 操作账号：1
+ 操作者IP：192.168.0.104
+ IP归属地：未分配或者内网IP  内网IP
+ 浏 览 器：Chrome 60.0
+ 操作模块：程序异常
+ 提示信息：Column 'SULLoginName' cannot be nullINSERT INTO lycoder.sys_userlogon (`SULUserId`,`SULLoginName`,`SULPassword`,`SULSecretKey`,`SULPrevVisitTime`,`SULLastVisitTime`,`SULChangePwdTime`,`SULLoginCount`,`SULAllowMultiUserOnline`,`SULIsOnLine`,`SULQuestion`,`SULAnswerQuestion`,`SULCheckIPAddress`,`SULLanguage`,`SULTheme`) VALUES (@0,@1,@2,@3,@4,@5,@6,@7,@8,@9,@10,@11,@12,@13,@14);
+SELECT @@IDENTITY AS NewID;
+	 -> @0 [Int32] = "3"
+	 -> @1 [DBNull] = ""
+	 -> @2 [String] = "9bca2d6ec0abd95cf50b23a23cde24ad"
+	 -> @3 [String] = ""
+	 -> @4 [DateTime] = "0001/1/1 0:00:00"
+	 -> @5 [DateTime] = "2017/9/4 23:49:34"
+	 -> @6 [DateTime] = "0001/1/1 0:00:00"
+	 -> @7 [Int32] = "0"
+	 -> @8 [Int32] = "0"
+	 -> @9 [Int32] = "0"
+	 -> @10 [DBNull] = ""
+	 -> @11 [DBNull] = ""
+	 -> @12 [Int32] = "0"
+	 -> @13 [Int32] = "0"
+	 -> @14 [Int32] = "0"   在 MySql.Data.MySqlClient.MySqlStream.ReadPacket()
+   在 MySql.Data.MySqlClient.NativeDriver.GetResult(Int32& affectedRow, Int64& insertedId)
+   在 MySql.Data.MySqlClient.Driver.NextResult(Int32 statementId, Boolean force)
+   在 MySql.Data.MySqlClient.MySqlDataReader.NextResult()
+   在 MySql.Data.MySqlClient.MySqlCommand.ExecuteReader(CommandBehavior behavior)
+   在 MySql.Data.MySqlClient.MySqlCommand.ExecuteScalar()
+   在 LYCoder.Entity.Database.ExecuteScalarHelper(IDbCommand cmd) 位置 F:\Projects\LYCoder\LYCoder.Entity\TableModels\PetaPoco.cs:行号 2519
+   在 LYCoder.Entity.DatabaseProvider.ExecuteInsert(Database database, IDbCommand cmd, String primaryKeyName) 位置 F:\Projects\LYCoder\LYCoder.Entity\TableModels\PetaPoco.cs:行号 4701
+   在 LYCoder.Entity.Database.ExecuteInsert(String tableName, String primaryKeyName, Boolean autoIncrement, Object poco) 位置 F:\Projects\LYCoder\LYCoder.Entity\TableModels\PetaPoco.cs:行号 1360
+
+ 发生时间：2017-09-04 23:49:34.8646
+ 日志级别：ERROR
+ 操作账号：1
+ 操作者IP：192.168.0.104
+ IP归属地：未分配或者内网IP  内网IP
+ 浏 览 器：Chrome 60.0
+ 操作模块：程序异常
+ 提示信息：Column 'SULLoginName' cannot be null   在 MySql.Data.MySqlClient.MySqlStream.ReadPacket()
+   在 MySql.Data.MySqlClient.NativeDriver.GetResult(Int32& affectedRow, Int64& insertedId)
+   在 MySql.Data.MySqlClient.Driver.NextResult(Int32 statementId, Boolean force)
+   在 MySql.Data.MySqlClient.MySqlDataReader.NextResult()
+   在 MySql.Data.MySqlClient.MySqlCommand.ExecuteReader(CommandBehavior behavior)
+   在 MySql.Data.MySqlClient.MySqlCommand.ExecuteScalar()
+   在 LYCoder.Entity.Database.ExecuteScalarHelper(IDbCommand cmd) 位置 F:\Projects\LYCoder\LYCoder.Entity\TableModels\PetaPoco.cs:行号 2519
+   在 LYCoder.Entity.DatabaseProvider.ExecuteInsert(Database database, IDbCommand cmd, String primaryKeyName) 位置 F:\Projects\LYCoder\LYCoder.Entity\TableModels\PetaPoco.cs:行号 4701
+   在 LYCoder.Entity.Database.ExecuteInsert(String tableName, String primaryKeyName, Boolean autoIncrement, Object poco) 位置 F:\Projects\LYCoder\LYCoder.Entity\TableModels\PetaPoco.cs:行号 1385
+   在 LYCoder.Entity.Database.Insert(Object poco) 位置 F:\Projects\LYCoder\LYCoder.Entity\TableModels\PetaPoco.cs:行号 1294
+   在 LYCoder.DataAccess.BaseAccess`1.Insert(TEntity model) 位置 F:\Projects\LYCoder\LYCoder.DataAccess\BaseAccess.cs:行号 37
+   在 LYCoder.Service.UserLogOnService.Insert(Sys_Userlogon model) 位置 F:\Projects\LYCoder\LYCoder.Service\System\UserLogOnService.cs:行号 21
+   在 LYCoder.Web.Areas.System.Controllers.UserController.Form(Sys_User model, String password, String roleIds) 位置 F:\Projects\LYCoder\LYCoder.Controller\System\UserController.cs:行号 60
+   在 lambda_method(Closure , ControllerBase , Object[] )
+   在 System.Web.Mvc.ReflectedActionDescriptor.Execute(ControllerContext controllerContext, IDictionary`2 parameters)
+   在 System.Web.Mvc.ControllerActionInvoker.InvokeActionMethod(ControllerContext controllerContext, ActionDescriptor actionDescriptor, IDictionary`2 parameters)
+   在 System.Web.Mvc.Async.AsyncControllerActionInvoker.<BeginInvokeSynchronousActionMethod>b__39(IAsyncResult asyncResult, ActionInvocation innerInvokeState)
+   在 System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncResult`2.CallEndDelegate(IAsyncResult asyncResult)
+   在 System.Web.Mvc.Async.AsyncControllerActionInvoker.EndInvokeActionMethod(IAsyncResult asyncResult)
+   在 System.Web.Mvc.Async.AsyncControllerActionInvoker.AsyncInvocationWithFilters.<InvokeActionMethodFilterAsynchronouslyRecursive>b__3d()
+   在 System.Web.Mvc.Async.AsyncControllerActionInvoker.AsyncInvocationWithFilters.<>c__DisplayClass46.<InvokeActionMethodFilterAsynchronouslyRecursive>b__3f()
+   在 System.Web.Mvc.Async.AsyncControllerActionInvoker.AsyncInvocationWithFilters.<>c__DisplayClass46.<InvokeActionMethodFilterAsynchronouslyRecursive>b__3f()
+   在 System.Web.Mvc.Async.AsyncControllerActionInvoker.EndInvokeActionMethodWithFilters(IAsyncResult asyncResult)
+   在 System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass21.<>c__DisplayClass2b.<BeginInvokeAction>b__1c()
+   在 System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass21.<BeginInvokeAction>b__1e(IAsyncResult asyncResult)
+
+ 发生时间：2017-09-04 23:50:05.1424
+ 日志级别：ERROR
+ 操作账号：1
+ 操作者IP：192.168.0.104
+ IP归属地：未分配或者内网IP  内网IP
+ 浏 览 器：Chrome 60.0
+ 操作模块：Column 'SULLoginName' cannot be null
+ 提示信息：   在 MySql.Data.MySqlClient.MySqlStream.ReadPacket()
+   在 MySql.Data.MySqlClient.NativeDriver.GetResult(Int32& affectedRow, Int64& insertedId)
+   在 MySql.Data.MySqlClient.Driver.NextResult(Int32 statementId, Boolean force)
+   在 MySql.Data.MySqlClient.MySqlDataReader.NextResult()
+   在 MySql.Data.MySqlClient.MySqlCommand.ExecuteReader(CommandBehavior behavior)
+   在 MySql.Data.MySqlClient.MySqlCommand.ExecuteScalar()
+   在 LYCoder.Entity.Database.ExecuteScalarHelper(IDbCommand cmd) 位置 F:\Projects\LYCoder\LYCoder.Entity\TableModels\PetaPoco.cs:行号 2519
+   在 LYCoder.Entity.DatabaseProvider.ExecuteInsert(Database database, IDbCommand cmd, String primaryKeyName) 位置 F:\Projects\LYCoder\LYCoder.Entity\TableModels\PetaPoco.cs:行号 4701
+   在 LYCoder.Entity.Database.ExecuteInsert(String tableName, String primaryKeyName, Boolean autoIncrement, Object poco) 位置 F:\Projects\LYCoder\LYCoder.Entity\TableModels\PetaPoco.cs:行号 1385
+   在 LYCoder.Entity.Database.Insert(Object poco) 位置 F:\Projects\LYCoder\LYCoder.Entity\TableModels\PetaPoco.cs:行号 1294
+   在 LYCoder.DataAccess.BaseAccess`1.Insert(TEntity model) 位置 F:\Projects\LYCoder\LYCoder.DataAccess\BaseAccess.cs:行号 37
+   在 LYCoder.Service.UserLogOnService.Insert(Sys_Userlogon model) 位置 F:\Projects\LYCoder\LYCoder.Service\System\UserLogOnService.cs:行号 21
+   在 LYCoder.Web.Areas.System.Controllers.UserController.Form(Sys_User model, String password, String roleIds) 位置 F:\Projects\LYCoder\LYCoder.Controller\System\UserController.cs:行号 60
+   在 lambda_method(Closure , ControllerBase , Object[] )
+   在 System.Web.Mvc.ReflectedActionDescriptor.Execute(ControllerContext controllerContext, IDictionary`2 parameters)
+   在 System.Web.Mvc.ControllerActionInvoker.InvokeActionMethod(ControllerContext controllerContext, ActionDescriptor actionDescriptor, IDictionary`2 parameters)
+   在 System.Web.Mvc.Async.AsyncControllerActionInvoker.<BeginInvokeSynchronousActionMethod>b__39(IAsyncResult asyncResult, ActionInvocation innerInvokeState)
+   在 System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncResult`2.CallEndDelegate(IAsyncResult asyncResult)
+   在 System.Web.Mvc.Async.AsyncControllerActionInvoker.EndInvokeActionMethod(IAsyncResult asyncResult)
+   在 System.Web.Mvc.Async.AsyncControllerActionInvoker.AsyncInvocationWithFilters.<InvokeActionMethodFilterAsynchronouslyRecursive>b__3d()
+   在 System.Web.Mvc.Async.AsyncControllerActionInvoker.AsyncInvocationWithFilters.<>c__DisplayClass46.<InvokeActionMethodFilterAsynchronouslyRecursive>b__3f()
+   在 System.Web.Mvc.Async.AsyncControllerActionInvoker.AsyncInvocationWithFilters.<>c__DisplayClass46.<InvokeActionMethodFilterAsynchronouslyRecursive>b__3f()
+   在 System.Web.Mvc.Async.AsyncControllerActionInvoker.EndInvokeActionMethodWithFilters(IAsyncResult asyncResult)
+   在 System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass21.<>c__DisplayClass2b.<BeginInvokeAction>b__1c()
+   在 System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass21.<BeginInvokeAction>b__1e(IAsyncResult asyncResult)
+
+ 发生时间：2017-09-04 23:57:45.3957
+ 日志级别：ERROR
+ 操作账号：1
+ 操作者IP：192.168.0.104
+ IP归属地：未分配或者内网IP  内网IP
+ 浏 览 器：Chrome 60.0
+ 操作模块：程序异常
+ 提示信息：Column 'SULLoginName' cannot be nullINSERT INTO lycoder.sys_userlogon (`SULUserId`,`SULLoginName`,`SULPassword`,`SULSecretKey`,`SULPrevVisitTime`,`SULLastVisitTime`,`SULChangePwdTime`,`SULLoginCount`,`SULAllowMultiUserOnline`,`SULIsOnLine`,`SULQuestion`,`SULAnswerQuestion`,`SULCheckIPAddress`,`SULLanguage`,`SULTheme`) VALUES (@0,@1,@2,@3,@4,@5,@6,@7,@8,@9,@10,@11,@12,@13,@14);
+SELECT @@IDENTITY AS NewID;
+	 -> @0 [Int32] = "4"
+	 -> @1 [DBNull] = ""
+	 -> @2 [String] = "9bca2d6ec0abd95cf50b23a23cde24ad"
+	 -> @3 [String] = ""
+	 -> @4 [DateTime] = "0001/1/1 0:00:00"
+	 -> @5 [DateTime] = "2017/9/4 23:57:45"
+	 -> @6 [DateTime] = "0001/1/1 0:00:00"
+	 -> @7 [Int32] = "0"
+	 -> @8 [Int32] = "0"
+	 -> @9 [Int32] = "0"
+	 -> @10 [DBNull] = ""
+	 -> @11 [DBNull] = ""
+	 -> @12 [Int32] = "0"
+	 -> @13 [Int32] = "0"
+	 -> @14 [Int32] = "0"   在 MySql.Data.MySqlClient.MySqlStream.ReadPacket()
+   在 MySql.Data.MySqlClient.NativeDriver.GetResult(Int32& affectedRow, Int64& insertedId)
+   在 MySql.Data.MySqlClient.Driver.NextResult(Int32 statementId, Boolean force)
+   在 MySql.Data.MySqlClient.MySqlDataReader.NextResult()
+   在 MySql.Data.MySqlClient.MySqlCommand.ExecuteReader(CommandBehavior behavior)
+   在 MySql.Data.MySqlClient.MySqlCommand.ExecuteScalar()
+   在 LYCoder.Entity.Database.ExecuteScalarHelper(IDbCommand cmd) 位置 F:\Projects\LYCoder\LYCoder.Entity\TableModels\PetaPoco.cs:行号 2519
+   在 LYCoder.Entity.DatabaseProvider.ExecuteInsert(Database database, IDbCommand cmd, String primaryKeyName) 位置 F:\Projects\LYCoder\LYCoder.Entity\TableModels\PetaPoco.cs:行号 4701
+   在 LYCoder.Entity.Database.ExecuteInsert(String tableName, String primaryKeyName, Boolean autoIncrement, Object poco) 位置 F:\Projects\LYCoder\LYCoder.Entity\TableModels\PetaPoco.cs:行号 1360
+
+ 发生时间：2017-09-04 23:57:45.4387
+ 日志级别：ERROR
+ 操作账号：1
+ 操作者IP：192.168.0.104
+ IP归属地：未分配或者内网IP  内网IP
+ 浏 览 器：Chrome 60.0
+ 操作模块：程序异常
+ 提示信息：Column 'SULLoginName' cannot be null   在 MySql.Data.MySqlClient.MySqlStream.ReadPacket()
+   在 MySql.Data.MySqlClient.NativeDriver.GetResult(Int32& affectedRow, Int64& insertedId)
+   在 MySql.Data.MySqlClient.Driver.NextResult(Int32 statementId, Boolean force)
+   在 MySql.Data.MySqlClient.MySqlDataReader.NextResult()
+   在 MySql.Data.MySqlClient.MySqlCommand.ExecuteReader(CommandBehavior behavior)
+   在 MySql.Data.MySqlClient.MySqlCommand.ExecuteScalar()
+   在 LYCoder.Entity.Database.ExecuteScalarHelper(IDbCommand cmd) 位置 F:\Projects\LYCoder\LYCoder.Entity\TableModels\PetaPoco.cs:行号 2519
+   在 LYCoder.Entity.DatabaseProvider.ExecuteInsert(Database database, IDbCommand cmd, String primaryKeyName) 位置 F:\Projects\LYCoder\LYCoder.Entity\TableModels\PetaPoco.cs:行号 4701
+   在 LYCoder.Entity.Database.ExecuteInsert(String tableName, String primaryKeyName, Boolean autoIncrement, Object poco) 位置 F:\Projects\LYCoder\LYCoder.Entity\TableModels\PetaPoco.cs:行号 1385
+   在 LYCoder.Entity.Database.Insert(Object poco) 位置 F:\Projects\LYCoder\LYCoder.Entity\TableModels\PetaPoco.cs:行号 1294
+   在 LYCoder.DataAccess.BaseAccess`1.Insert(TEntity model) 位置 F:\Projects\LYCoder\LYCoder.DataAccess\BaseAccess.cs:行号 37
+   在 LYCoder.Service.UserLogOnService.Insert(Sys_Userlogon model) 位置 F:\Projects\LYCoder\LYCoder.Service\System\UserLogOnService.cs:行号 21
+   在 LYCoder.Web.Areas.System.Controllers.UserController.Form(Sys_User model, String password, String roleIds) 位置 F:\Projects\LYCoder\LYCoder.Controller\System\UserController.cs:行号 60
+   在 lambda_method(Closure , ControllerBase , Object[] )
+   在 System.Web.Mvc.ReflectedActionDescriptor.Execute(ControllerContext controllerContext, IDictionary`2 parameters)
+   在 System.Web.Mvc.ControllerActionInvoker.InvokeActionMethod(ControllerContext controllerContext, ActionDescriptor actionDescriptor, IDictionary`2 parameters)
+   在 System.Web.Mvc.Async.AsyncControllerActionInvoker.<BeginInvokeSynchronousActionMethod>b__39(IAsyncResult asyncResult, ActionInvocation innerInvokeState)
+   在 System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncResult`2.CallEndDelegate(IAsyncResult asyncResult)
+   在 System.Web.Mvc.Async.AsyncControllerActionInvoker.EndInvokeActionMethod(IAsyncResult asyncResult)
+   在 System.Web.Mvc.Async.AsyncControllerActionInvoker.AsyncInvocationWithFilters.<InvokeActionMethodFilterAsynchronouslyRecursive>b__3d()
+   在 System.Web.Mvc.Async.AsyncControllerActionInvoker.AsyncInvocationWithFilters.<>c__DisplayClass46.<InvokeActionMethodFilterAsynchronouslyRecursive>b__3f()
+   在 System.Web.Mvc.Async.AsyncControllerActionInvoker.AsyncInvocationWithFilters.<>c__DisplayClass46.<InvokeActionMethodFilterAsynchronouslyRecursive>b__3f()
+   在 System.Web.Mvc.Async.AsyncControllerActionInvoker.EndInvokeActionMethodWithFilters(IAsyncResult asyncResult)
+   在 System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass21.<>c__DisplayClass2b.<BeginInvokeAction>b__1c()
+   在 System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass21.<BeginInvokeAction>b__1e(IAsyncResult asyncResult)
+
+ 发生时间：2017-09-04 23:58:16.1415
+ 日志级别：ERROR
+ 操作账号：1
+ 操作者IP：192.168.0.104
+ IP归属地：未分配或者内网IP  内网IP
+ 浏 览 器：Chrome 60.0
+ 操作模块：Column 'SULLoginName' cannot be null
+ 提示信息：   在 MySql.Data.MySqlClient.MySqlStream.ReadPacket()
+   在 MySql.Data.MySqlClient.NativeDriver.GetResult(Int32& affectedRow, Int64& insertedId)
+   在 MySql.Data.MySqlClient.Driver.NextResult(Int32 statementId, Boolean force)
+   在 MySql.Data.MySqlClient.MySqlDataReader.NextResult()
+   在 MySql.Data.MySqlClient.MySqlCommand.ExecuteReader(CommandBehavior behavior)
+   在 MySql.Data.MySqlClient.MySqlCommand.ExecuteScalar()
+   在 LYCoder.Entity.Database.ExecuteScalarHelper(IDbCommand cmd) 位置 F:\Projects\LYCoder\LYCoder.Entity\TableModels\PetaPoco.cs:行号 2519
+   在 LYCoder.Entity.DatabaseProvider.ExecuteInsert(Database database, IDbCommand cmd, String primaryKeyName) 位置 F:\Projects\LYCoder\LYCoder.Entity\TableModels\PetaPoco.cs:行号 4701
+   在 LYCoder.Entity.Database.ExecuteInsert(String tableName, String primaryKeyName, Boolean autoIncrement, Object poco) 位置 F:\Projects\LYCoder\LYCoder.Entity\TableModels\PetaPoco.cs:行号 1385
+   在 LYCoder.Entity.Database.Insert(Object poco) 位置 F:\Projects\LYCoder\LYCoder.Entity\TableModels\PetaPoco.cs:行号 1294
+   在 LYCoder.DataAccess.BaseAccess`1.Insert(TEntity model) 位置 F:\Projects\LYCoder\LYCoder.DataAccess\BaseAccess.cs:行号 37
+   在 LYCoder.Service.UserLogOnService.Insert(Sys_Userlogon model) 位置 F:\Projects\LYCoder\LYCoder.Service\System\UserLogOnService.cs:行号 21
+   在 LYCoder.Web.Areas.System.Controllers.UserController.Form(Sys_User model, String password, String roleIds) 位置 F:\Projects\LYCoder\LYCoder.Controller\System\UserController.cs:行号 60
+   在 lambda_method(Closure , ControllerBase , Object[] )
+   在 System.Web.Mvc.ReflectedActionDescriptor.Execute(ControllerContext controllerContext, IDictionary`2 parameters)
+   在 System.Web.Mvc.ControllerActionInvoker.InvokeActionMethod(ControllerContext controllerContext, ActionDescriptor actionDescriptor, IDictionary`2 parameters)
+   在 System.Web.Mvc.Async.AsyncControllerActionInvoker.<BeginInvokeSynchronousActionMethod>b__39(IAsyncResult asyncResult, ActionInvocation innerInvokeState)
+   在 System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncResult`2.CallEndDelegate(IAsyncResult asyncResult)
+   在 System.Web.Mvc.Async.AsyncControllerActionInvoker.EndInvokeActionMethod(IAsyncResult asyncResult)
+   在 System.Web.Mvc.Async.AsyncControllerActionInvoker.AsyncInvocationWithFilters.<InvokeActionMethodFilterAsynchronouslyRecursive>b__3d()
+   在 System.Web.Mvc.Async.AsyncControllerActionInvoker.AsyncInvocationWithFilters.<>c__DisplayClass46.<InvokeActionMethodFilterAsynchronouslyRecursive>b__3f()
+   在 System.Web.Mvc.Async.AsyncControllerActionInvoker.AsyncInvocationWithFilters.<>c__DisplayClass46.<InvokeActionMethodFilterAsynchronouslyRecursive>b__3f()
+   在 System.Web.Mvc.Async.AsyncControllerActionInvoker.EndInvokeActionMethodWithFilters(IAsyncResult asyncResult)
+   在 System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass21.<>c__DisplayClass2b.<BeginInvokeAction>b__1c()
+   在 System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass21.<BeginInvokeAction>b__1e(IAsyncResult asyncResult)
+

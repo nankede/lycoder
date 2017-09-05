@@ -1,0 +1,100 @@
+﻿@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>LYCoder.MVC - 基于Web的通用管理系统轻量级解决方案</title>
+    <meta name="keywords" content="LYCoder.mvc官网,LYCoder.mvc下载,LYCoder.mvc框架,轻量级开发框架,通用后台管理系统">
+    <meta name="description" content="LYCoder.MVC是一款基于Web的通用管理系统轻量级解决方案">
+    <link rel="shortcut icon" type="image/ico" href="~/favicon.ico" />
+    <link rel="bookmark" type="image/ico" href="~/favicon.ico" />
+    <link href="~/Content/layui/css/layui.css" rel="stylesheet" />
+    <link href="~/Content/framework/css/login.css" rel="stylesheet" />
+    <link href="~/Content/framework/css/animate.css" rel="stylesheet" />
+</head>
+<body>
+    <div class="lycoder-product-box animated fadeInUp">
+        <h2>LYCoder.MVC通用管理系统轻量级解决方案</h2>
+        <ul class="product-desc">
+            <li>LYCoder.MVC是一套基于 ASP.NET MVC5 + Layui 开发的通用管理系统快速开发框架。</li>
+            <li>系统操作界面简洁，项目结构清晰，功能模块化设计，支撑框架轻量高效。</li>
+            <li>目前完成框架搭建和实现基础功能，代码层级分离，注释完整，可快速重构，提高开发效率。</li>
+            <li>支持SQL Server、SQL Server CE、MySQL、PostgreSQL和Oracle等多种数据库类型。</li>
+            <li>该解决方案适用于OA、电商平台、CRM、物流管理、教务管理等各类管理系统开发。</li>
+            <li>兼容除IE8以下所有浏览器，暂不支持移动端，后续会支持以及添加更多功能。</li>
+        </ul>
+        <div class="product-btns">
+        </div>
+    </div>
+    <div class="lycoder-login-box animated fadeInRight">
+        <div class="lycoder-login-header">LYCoder.MVC在线演示</div>
+        <div class="lycoder-login-body">
+            <form class="layui-form">
+                <div class="layui-form-item">
+                    <label class="login-icon"><i class="layui-icon">&#xe612;</i></label>
+                    <input type="text" name="username" lay-verify="required" autocomplete="off" placeholder="账号/已认证邮箱" class="layui-input">
+                </div>
+                <div class="layui-form-item">
+                    <label class="login-icon">
+                        <i class="layui-icon">&#xe642;</i>
+                    </label>
+                    <input type="password" name="password" lay-verify="required" autocomplete="off" placeholder="登陆密码" class="layui-input">
+                </div>
+                <div class="layui-form-item">
+                    <div class="login-code-box">
+                        <label class="login-icon"><i class="layui-icon">&#xe62d;</i></label>
+                        <input type="text" name="verifycode" lay-verify="required" autocomplete="off" placeholder="验证码" class="layui-input">
+                        <img id="verifyCode" src="/Account/VerifyCode" title="点击更换验证码">
+                    </div>
+                    <input class="lycoder-pull-right" type="checkbox" lay-skin="primary" name="isSaveAccount" value="true" title="记住账号" />
+                </div>
+                <div class="layui-form-item">
+                    <button class="layui-btn btn-submit" lay-submit lay-filter="login">立即登录</button>
+                </div>
+            </form>
+        </div>
+        <div class="lycoder-login-fooder"></div>
+    </div>
+</body>
+</html>
+<script src="~/Content/jquery/jquery.min.js"></script>
+<script src="~/Content/jquery/jquery.md5.js"></script>
+<script src="~/Content/framework/js/global.js"></script>
+<script src="~/Content/layui/layui.js"></script>
+<script>
+    layui.use(['layer', 'form'], function () {
+        //var $ = layui.jquery;
+        var layer = layui.layer;
+        var form = layui.form();
+        form.on('submit(login)', function (data) {
+            data.field.password = $.md5(data.field.password);
+            $(".btn-submit").html("正在登录...");
+            $(".btn-submit").attr('disabled', true).addClass('layui-disabled');
+            $.ajax({
+                url: "/Account/Login",
+                data: data.field,
+                type: "post",
+                dataType: "json",
+                success: function (result) {
+                    if (result.State == 1) {
+                        window.location.href = "/Home/Index";
+                        $(".btn-submit").html("登录成功，跳转中...");
+                    } else {
+                        $(".btn-submit").html("立即登录");
+                        $(".btn-submit").attr('disabled', false).removeClass('layui-disabled');
+                        $("#verifyCode").trigger('click');
+                        $.layerMsg(result.Message, result.State);
+                    }
+                }
+            });
+            return false;
+        });
+        $("#verifyCode").click(function () {
+            $(this).attr("src", "/Account/VerifyCode?r=" + Math.random());
+        });
+    });
+</script>

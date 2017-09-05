@@ -1,0 +1,45 @@
+<#@ include file="PetaPoco.Core.ttinclude" #>
+<#
+	// Settings
+    ConnectionStringName = "connStr";			// Uses last connection string in config if not specified
+    Namespace = "LYCoder.Entity";
+    RepoName = "DbContext";
+    GenerateOperations = true;
+	GeneratePocos = true;
+	GenerateCommon = true;
+	ClassPrefix = "";
+	ClassSuffix = "";
+	TrackModifiedColumns = false;
+	ExplicitColumns = true;
+	ExcludePrefix = new string[] {}; // Exclude tables by prefix.
+
+    // Read schema
+	var tables = LoadTables();
+
+
+/*
+	// Tweak Schema
+	tables["tablename"].Ignore = true;							// To ignore a table
+	tables["tablename"].ClassName = "newname";					// To change the class name of a table
+	tables["tablename"]["columnname"].Ignore = true;			// To ignore a column
+	tables["tablename"]["columnname"].PropertyName="newname";	// To change the property name of a column
+	tables["tablename"]["columnname"].PropertyType="bool";		// To change the property type of a column
+*/
+foreach (Table tbl in from t in tables select t)
+ {
+	 //处理表名称
+	StringBuilder newString = new StringBuilder();
+	var arrList = tbl.Name.ToLower().Split('_');
+	foreach (var str in arrList)
+	{
+		newString.AppendFormat("{0}{1}_", str.Substring(0, 1).ToUpper(), str.Substring(1));
+	}
+	tables[tbl.Name].ClassName = ClassPrefix + newString.ToString().TrimEnd('_');
+}
+	// Generate output
+	if (tables.Count>0)
+	{
+#>
+<#@ include file="PetaPoco.Generator.ttinclude" #>
+<#@ include file="ModelOnly.ttinclude" #>
+<# } #>

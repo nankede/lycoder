@@ -1,0 +1,16 @@
+F:\Projects\LYCoder\LYCoder.DataAccess\bin\Debug\LYCoder.DataAccess.dll
+F:\Projects\LYCoder\LYCoder.DataAccess\bin\Debug\LYCoder.DataAccess.pdb
+F:\Projects\LYCoder\LYCoder.DataAccess\bin\Debug\LYCoder.Entity.dll
+F:\Projects\LYCoder\LYCoder.DataAccess\bin\Debug\MySql.Data.dll
+F:\Projects\LYCoder\LYCoder.DataAccess\bin\Debug\LYCoder.Common.dll
+F:\Projects\LYCoder\LYCoder.DataAccess\bin\Debug\Newtonsoft.Json.dll
+F:\Projects\LYCoder\LYCoder.DataAccess\bin\Debug\NLog.dll
+F:\Projects\LYCoder\LYCoder.DataAccess\bin\Debug\LYCoder.Entity.pdb
+F:\Projects\LYCoder\LYCoder.DataAccess\bin\Debug\LYCoder.Entity.dll.config
+F:\Projects\LYCoder\LYCoder.DataAccess\bin\Debug\MySql.Data.xml
+F:\Projects\LYCoder\LYCoder.DataAccess\bin\Debug\LYCoder.Common.pdb
+F:\Projects\LYCoder\LYCoder.DataAccess\bin\Debug\Newtonsoft.Json.xml
+F:\Projects\LYCoder\LYCoder.DataAccess\bin\Debug\NLog.xml
+F:\Projects\LYCoder\LYCoder.DataAccess\obj\Debug\LYCoder.DataAccess.csprojResolveAssemblyReference.cache
+F:\Projects\LYCoder\LYCoder.DataAccess\obj\Debug\LYCoder.DataAccess.dll
+F:\Projects\LYCoder\LYCoder.DataAccess\obj\Debug\LYCoder.DataAccess.pdb

@@ -1,0 +1,60 @@
+﻿<#@ include file="SigleFile.ttinclude" #>
+<# var manager=new Manager(Host, GenerationEnvironment, true) { OutputPath = Path.GetDirectoryName(Host.TemplateFile)};
+
+foreach(Table tbl in from t in tables where !t.Ignore select t)
+{ 
+	manager.StartBlock(tbl.ClassName+".cs");
+	#>
+using System;
+namespace <#=Namespace #>
+{
+	/// <summary>
+	/// <#=tbl.ClassName #>
+	/// </summary>
+	<# if (string.IsNullOrEmpty(tbl.Schema)) { #>
+	[TableName("<#=tbl.Name#>")]
+	<#} else {#>
+	[TableName("<#=tbl.Schema + "." + tbl.Name#>")]	
+	<#} if (tbl.PK!=null  &&  !string.IsNullOrEmpty(tbl.PK.Name))  { #>
+	[PrimaryKey("<#=tbl.PK.Name#>")]
+	<# }  #> 
+	<# if (ExplicitColumns) { #> 
+	[ExplicitColumns]
+	<# } #>
+	public partial class <#=tbl.ClassName #> : DbContext.Record<<#=tbl.ClassName #>>
+	{
+<# foreach(Column col in from c in tbl.Columns where !c.Ignore select c){ #>
+	<#  if(col.PropertyType ==  "string") {#> 
+		private <#=col.PropertyType #><#=CheckNullable(col)#> _<#=col.PropertyName #> = string.Empty ;
+	<# }  else if(col.PropertyType ==  "int" || col.PropertyType ==  "long" ) {#>
+		private <#=col.PropertyType #><#=CheckNullable(col)#> _<#=col.PropertyName #> = 0;
+	<# }  else { #>
+		private <#=col.PropertyType #><#=CheckNullable(col)#> _<#=col.PropertyName #> ;
+	<# }  #>
+		/// <summary>
+		/// <#=col.PropertyName #>
+		/// </summary>
+		[Column] public <#=col.PropertyType #><#=CheckNullable(col)#> <#=col.PropertyName #>
+		{ 
+			get {	return _<#=col.PropertyName #>;	}
+			set {	_<#=col.PropertyName #> = value; }
+		}
+<# } #>
+	}
+
+	/// <summary>
+	/// <#=tbl.ClassName #>字段枚举
+	/// </summary>
+	public enum <#=tbl.ClassName #>Fields
+	{
+	<# foreach(Column col in from c in tbl.Columns where !c.Ignore select c){ #>
+		/// <summary>
+		/// <#=col.PropertyName #>
+		/// </summary>
+		<#=col.PropertyName #>,
+	<# } #>
+	}
+}
+	<#manager.EndBlock();#>
+<# } #>
+<#manager.Process(true); #>

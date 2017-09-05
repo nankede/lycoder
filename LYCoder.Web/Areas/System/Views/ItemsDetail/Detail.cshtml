@@ -1,0 +1,60 @@
+﻿@{
+    ViewBag.Title = "Detail";
+    Layout = "~/Views/Shared/_Form.cshtml";
+}
+
+<form id="form" class="layui-form" style="margin-top: 25px">
+    <div class="layui-form-item">
+        <div class="layui-inline">
+            <label class="layui-form-label">编码</label>
+            <div class="layui-input-inline">
+                <input type="hidden" name="Id" />
+                <input type="hidden" name="ItemId" />
+                <input type="text" name="SIDEnCode" autocomplete="off" class="layui-input" disabled />
+            </div>
+        </div>
+        <div class="layui-inline">
+            <label class="layui-form-label">选项名称</label>
+            <div class="layui-input-inline">
+                <input type="text" name="SIDName" autocomplete="off" class="layui-input" disabled />
+            </div>
+        </div>
+    </div>
+    <div class="layui-form-item">
+        <div class="layui-inline">
+            <label class="layui-form-label">选项</label>
+            <div class="layui-input-inline">
+                <input type="checkbox" lay-skin="primary" name="SIDIsEnabled" value="1" title="启用" checked disabled />
+                <input type="checkbox" lay-skin="primary" name="SIDIsDefault" value="1" title="默认值" disabled />
+            </div>
+        </div>
+        <div class="layui-inline">
+            <label class="layui-form-label">排序码</label>
+            <div class="layui-input-inline">
+                <input type="number" name="SIDSortCode" lay-verify="number" autocomplete="off" class="layui-input" disabled />
+            </div>
+        </div>
+    </div>
+</form>
+<script>
+    layui.use(['form'], function () {
+        var form = layui.form();
+
+        var primaryKey = $.getQueryString("primaryKey");
+        if (primaryKey) {
+            $.ajax({
+                url: "/System/ItemsDetail/GetForm",
+                data: { primaryKey: primaryKey },
+                type: "post",
+                dataType: "json",
+                async: false,
+                success: function (data) {
+                    $("#form").formSerialize(data);
+                }
+            });
+        }
+
+        form.render();
+
+    });
+</script>

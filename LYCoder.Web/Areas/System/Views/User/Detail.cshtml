@@ -1,0 +1,138 @@
+﻿@{
+    ViewBag.Title = "Detail";
+    Layout = "~/Views/Shared/_Form.cshtml";
+}
+
+<form id="form" class="layui-form" style="margin-top: 25px">
+    <div class="layui-form-item">
+        <div class="layui-inline">
+            <label class="layui-form-label">账号</label>
+            <div class="layui-input-inline">
+                <input type="hidden" name="Id" disabled />
+                <input type="text" name="SUAccount" id="Account" autocomplete="off" class="layui-input" disabled />
+            </div>
+        </div>
+        <div class="layui-inline">
+            <label class="layui-form-label">初始密码</label>
+            <div class="layui-input-inline">
+                <input type="password" name="SUPassword" id="Password" autocomplete="off" class="layui-input" disabled>
+            </div>
+        </div>
+
+    </div>
+    <div class="layui-form-item">
+        <div class="layui-inline">
+            <label class="layui-form-label">昵称</label>
+            <div class="layui-input-inline">
+                <input type="text" name="SUNickName" autocomplete="off" class="layui-input" disabled />
+            </div>
+        </div>
+        <div class="layui-inline">
+            <label class="layui-form-label">姓名</label>
+            <div class="layui-input-inline">
+                <input type="text" name="SURealName" autocomplete="off" class="layui-input" disabled />
+            </div>
+        </div>
+
+    </div>
+
+    <div class="layui-form-item">
+        <div class="layui-inline">
+            <label class="layui-form-label">出生日期</label>
+            <div class="layui-input-inline">
+                <input class="layui-input" name="SUBirthday" onclick="layui.laydate({ elem: this })" disabled />
+            </div>
+        </div>
+        <div class="layui-inline">
+            <label class="layui-form-label">性别</label>
+            <div class="layui-input-inline">
+                <input type="radio" name="SUGender" value="true" title="男" checked />
+                <input type="radio" name="SUGender" value="false" title="女" />
+            </div>
+        </div>
+    </div>
+    <div class="layui-form-item">
+        <div class="layui-inline">
+            <label class="layui-form-label">邮箱</label>
+            <div class="layui-input-inline">
+                <input type="text" name="SUEmail" autocomplete="off" class="layui-input" disabled />
+            </div>
+        </div>
+        <div class="layui-inline">
+            <label class="layui-form-label">角色属性</label>
+            <div class="layui-input-inline">
+                <select lay-ignore name="SURoleId" class="select2" id="RoleId" multiple="multiple" style="width: 190px"></select>
+            </div>
+        </div>
+    </div>
+    <div class="layui-form-item">
+        <div class="layui-inline">
+            <label class="layui-form-label">所属机构</label>
+            <div class="layui-input-inline">
+                <select lay-ignore name="SUDepartmentId" id="OrganizeId" style="width: 514px;" class="select2"></select>
+            </div>
+        </div>
+    </div>
+    <div class="layui-form-item">
+        <div class="layui-inline">
+            <label class="layui-form-label">移动电话</label>
+            <div class="layui-input-inline">
+                <input type="text" name="SUMobilePhone" autocomplete="off" class="layui-input" disabled />
+            </div>
+        </div>
+        <div class="layui-inline">
+            <label class="layui-form-label">联系地址</label>
+            <div class="layui-input-inline">
+                <input type="text" name="SUAddress" autocomplete="off" class="layui-input" disabled />
+            </div>
+        </div>
+    </div>
+    <div class="layui-form-item">
+        <div class="layui-inline">
+            <label class="layui-form-label">启用</label>
+            <div class="layui-input-inline">
+                <input type="radio" name="SUIsEnabled" value="1" title="是" checked />
+                <input type="radio" name="SUIsEnabled" value="0" title="否" />
+            </div>
+        </div>
+    </div>
+    <div class="layui-form-item">
+        <div class="layui-inline">
+            <label class="layui-form-label">个性签名</label>
+            <div class="layui-input-inline" style="width: 514px;">
+                <textarea name="SUSignature" class="layui-textarea" disabled placeholder="这位同学很懒，木有签名的说～"></textarea>
+            </div>
+        </div>
+    </div>
+</form>
+<script>
+    layui.use(['element', 'form', 'laydate'], function () {
+        var form = layui.form();
+        var element = layui.element();
+
+        $("#OrganizeId").bindSelect({
+            url: "/System/Organize/GetListTreeSelect"
+        });
+
+        $("#RoleId").bindSelect({
+            url: "/System/Role/GetListTreeSelect"
+        });
+
+        var primaryKey = $.getQueryString("primaryKey");
+        if (primaryKey) {
+            $.ajax({
+                url: "/System/User/GetForm",
+                data: { primaryKey: primaryKey },
+                type: "post",
+                dataType: "json",
+                async: false,
+                success: function (data) {
+                    $("#form").formSerialize(data);
+                }
+            });
+        }
+
+        form.render();
+
+    });
+</script>
