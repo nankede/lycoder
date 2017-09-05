@@ -24,8 +24,7 @@
         <div class="layui-inline">
             <label class="layui-form-label">父级</label>
             <div class="layui-input-inline">
-                <select class="select2" lay-ignore name="SIParentId" id="ParentId" style="width: 190px">
-                </select>
+                <select class="select2" lay-ignore name="SIParentId" id="ParentId" style="width: 190px"></select>
             </div>
         </div>
         <div class="layui-inline">
@@ -48,6 +47,8 @@
         </div>
     </div>
 </form>
+
+@section PageJs{
 <script>
     layui.use(['form'], function () {
         var form = layui.form();
@@ -74,5 +75,6 @@
 
     });
 </script>
+}
 
 

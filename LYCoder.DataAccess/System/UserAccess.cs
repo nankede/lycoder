@@ -59,7 +59,7 @@ namespace LYCoder.DataAccess
                  .From("Sys_User u")
                  .LeftJoin("Sys_Organize o")
                  .On("u.SUDepartmentId=o.Id")
-                 .Where("u.SUDeleteMark=0 and u.SUAccount like @0 or u.SURealName like @1", '%' + keyWord + '%', '%' + keyWord + '%')
+                 .Where("u.SUDeleteMark=0 and (u.SUAccount like @0 or u.SURealName like @1 ) ", '%' + keyWord + '%', '%' + keyWord + '%')
                  .OrderBy("u.id desc");
 
             var sqlStr = Db.LastSQL;

@@ -24,8 +24,7 @@
         <div class="layui-inline">
             <label class="layui-form-label">父级</label>
             <div class="layui-input-inline">
-                <select class="select2" lay-ignore name="SIParentId" lay-verify="required" id="ParentId" style="width: 190px">
-                </select>
+                <select class="select2 layui-input" lay-ignore name="SIParentId" lay-verify="required" id="ParentId" style="width: 190px"></select>
             </div>
         </div>
         <div class="layui-inline">
@@ -53,34 +52,36 @@
         </div>
     </div>
 </form>
-<script>
-    layui.use(['form'], function () {
-        var form = layui.form();
-        $("#ParentId").bindSelect({
-            url: "/System/Item/GetListSelectTree"
-        });
-
-        var primaryKey = $.getQueryString("primaryKey");
-        if (primaryKey) {
-            $.ajax({
-                url: "/System/Item/GetForm",
-                data: { primaryKey: primaryKey },
-                type: "post",
-                dataType: "json",
-                async: false,
-                success: function (data) {
-                    $("#form").formSerialize(data);
-                }
+@section PageJs{
+    <script>
+        layui.use(['form'], function () {
+            var form = layui.form();
+            $("#ParentId").bindSelect({
+                url: "/System/Item/GetListSelectTree"
             });
-        }
 
-        form.render();
-        form.on('submit(add)', function (data) {
-            $.formSubmit({
-                url: "/System/Item/Form",
-                data: data.field
+            var primaryKey = $.getQueryString("primaryKey");
+            if (primaryKey) {
+                $.ajax({
+                    url: "/System/Item/GetForm",
+                    data: { primaryKey: primaryKey },
+                    type: "post",
+                    dataType: "json",
+                    async: false,
+                    success: function (data) {
+                        $("#form").formSerialize(data);
+                    }
+                });
+            }
+
+            form.render();
+            form.on('submit(add)', function (data) {
+                $.formSubmit({
+                    url: "/System/Item/Form",
+                    data: data.field
+                });
+                return false;
             });
-            return false;
         });
-    });
-</script>
+    </script>
+}

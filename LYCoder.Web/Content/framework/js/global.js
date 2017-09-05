@@ -288,7 +288,7 @@ $.fn.formSerialize = function (formdate, callback) {
             }
             switch (type) {
                 case "checkbox":
-                    value == "true" ? $field.attr("checked", 'checked') : $field.removeAttr("checked");
+                    value == "1" ? $field.attr("checked", 'checked') : $field.removeAttr("checked");
                     break;
                 case "select2":
                     if (!$field[0].multiple) {
@@ -324,7 +324,7 @@ $.fn.formSerialize = function (formdate, callback) {
         var type = $this.attr('type');
         switch (type) {
             case "checkbox":
-                postdata[id] = $this.is(":checked");
+                postdata[id] = $this.is(":checked") ? 1 : 0;
                 break;
             default:
                 var value = $this.val() == "" ? "&nbsp;" : $this.val();

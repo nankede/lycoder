@@ -104,6 +104,12 @@ namespace LYCoder.Web.Areas.System.Controllers
         {
             var data = ItemService.GetList();
             var treeList = new List<TreeSelect>();
+            treeList.Add(new TreeSelect()
+            {
+                id = 0,
+                text = "根节点",
+                parentId = -1
+            });
             foreach (var item in data)
             {
                 TreeSelect model = new TreeSelect()
