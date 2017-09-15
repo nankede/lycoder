@@ -125,9 +125,17 @@ namespace LYCoder.Common
         /// </summary>
         public int CompanyId { get; set; }
         /// <summary>
+        /// 公司
+        /// </summary>
+        public string CompanyName { get; set; }
+        /// <summary>
         /// 部门ID
         /// </summary>
         public int DepartmentId { get; set; }
+        /// <summary>
+        /// 公司
+        /// </summary>
+        public string DepartmentName { get; set; }
         /// <summary>
         /// 角色
         /// </summary>

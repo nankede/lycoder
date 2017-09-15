@@ -82,8 +82,15 @@ namespace LYCoder.Web.Areas.System.Controllers
         [HttpPost]
         public ActionResult GetListTreeSelect()
         {
+            var currt = OperatorProvider.Instance.Current;
             var data = OrganizeService.GetList();
             var treeList = new List<TreeSelect>();
+            treeList.Add(new TreeSelect()
+            {
+                id = currt.CompanyId,
+                text = currt.CompanyName,
+                parentId = -1
+            });
             foreach (Sys_Organize item in data)
             {
                 TreeSelect model = new TreeSelect();

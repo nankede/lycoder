@@ -65,7 +65,9 @@ namespace LYCoder.Web.Controllers
                     RealName = userEntity.SURealName,
                     Avatar = userEntity.SUAvatar,
                     CompanyId = userEntity.SUCompanyId,
+                    CompanyName = userEntity.CompanyName,
                     DepartmentId = userEntity.SUDepartmentId,
+                    DepartmentName = userEntity.DeptName,
                     LoginTime = DateTime.Now,
                     LoginCount = userLogOnEntity.SULLoginCount + 1,
                     MessageCount = 0,
@@ -137,17 +139,21 @@ namespace LYCoder.Web.Controllers
             else
             {
                 //重新保存用户信息。
-                Operator operatorModel = new Operator();
-                operatorModel.UserId = userEntity.Id;
-                operatorModel.Account = userEntity.SUAccount;
-                operatorModel.RealName = userEntity.SURealName;
-                operatorModel.Avatar = userEntity.SUAvatar;
-                operatorModel.CompanyId = userEntity.SUCompanyId;
-                operatorModel.DepartmentId = operatorModel.DepartmentId;
-                operatorModel.LoginTime = DateTime.Now;
-                operatorModel.Token = Guid.NewGuid().ToString().DESEncrypt();
-                operatorModel.LoginCount = userLogOnEntity.SULLoginCount;
-                operatorModel.MessageCount = 0;
+                Operator operatorModel = new Operator()
+                {
+                    UserId = userEntity.Id,
+                    Account = userEntity.SUAccount,
+                    RealName = userEntity.SURealName,
+                    Avatar = userEntity.SUAvatar,
+                    CompanyId = userEntity.SUCompanyId,
+                    CompanyName = userEntity.CompanyName,
+                    DepartmentId = userEntity.SUDepartmentId,
+                    DepartmentName = userEntity.DeptName,
+                    LoginTime = DateTime.Now,
+                    LoginCount = userLogOnEntity.SULLoginCount + 1,
+                    MessageCount = 0,
+                    Token = Guid.NewGuid().ToString().DESEncrypt(),
+                };
                 OperatorProvider.Instance.Current = operatorModel;
             }
             return Success();

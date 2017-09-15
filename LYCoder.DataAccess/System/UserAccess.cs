@@ -42,7 +42,16 @@ namespace LYCoder.DataAccess
 
         public static Sys_User GetByAccount(string account)
         {
-            return Db.FirstOrDefault<Sys_User>("where SUAccount=@0", account);
+            Sql sql = Sql.Builder
+                 .Select("u.*,od.SOFullName , oc.SOFullName")
+                 .From("Sys_User u")
+                 .LeftJoin("Sys_Organize od")
+                 .On("u.SUDepartmentId=od.Id")
+                  .LeftJoin("Sys_Organize oc")
+                 .On("u.SUCompanyId=oc.Id")
+                 .Where("u.SUAccount = @0  ", account);
+            var user = Db.Query<Sys_User, Sys_Organize, Sys_Organize>(sql);
+            return user?.First();
         }
 
         /// <summary>
@@ -55,17 +64,20 @@ namespace LYCoder.DataAccess
         public static Page<Sys_User> GetList(int pageIndex, int pageSize, string keyWord)
         {
             Sql sql = Sql.Builder
-                 .Select("u.*, o.SOFullName")
+                 .Select("u.*,od.SOFullName , oc.SOFullName")
                  .From("Sys_User u")
-                 .LeftJoin("Sys_Organize o")
-                 .On("u.SUDepartmentId=o.Id")
+                 .LeftJoin("Sys_Organize od")
+                 .On("u.SUDepartmentId=od.Id")
+                  .LeftJoin("Sys_Organize oc")
+                 .On("u.SUCompanyId=oc.Id")
                  .Where("u.SUDeleteMark=0 and (u.SUAccount like @0 or u.SURealName like @1 ) ", '%' + keyWord + '%', '%' + keyWord + '%')
                  .OrderBy("u.id desc");
 
             var sqlStr = Db.LastSQL;
-            var list = Db.PageJoin<Sys_User, Sys_Organize, Sys_User>((user, dept) =>
+            var list = Db.PageJoin<Sys_User, Sys_Organize, Sys_Organize, Sys_User>((user, dept, comp) =>
             {
                 user.DeptName = dept.SOFullName;
+                user.CompanyName = comp.SOFullName;
                 return user;
             }, pageIndex, pageSize, sql);
             return list;

@@ -8,9 +8,12 @@ namespace LYCoder.Entity
 {
     public partial class Sys_User
     {
-
         /// <summary>
-        /// 保存角色部门名称。
+        /// 公司名称
+        /// </summary>
+        public string CompanyName { get; set; }
+        /// <summary>
+        /// 部门名称
         /// </summary>
         public string DeptName { get; set; }
         /// <summary>
